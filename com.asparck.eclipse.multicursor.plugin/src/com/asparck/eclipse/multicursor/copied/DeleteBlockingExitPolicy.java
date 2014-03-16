@@ -1,4 +1,4 @@
-package com.asparck.eclipse.multicursor.handlers;
+package com.asparck.eclipse.multicursor.copied;
 
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.link.LinkedModeModel;
@@ -15,6 +15,7 @@ import org.eclipse.swt.events.VerifyEvent;
  *
  * See https://bugs.eclipse.org/bugs/show_bug.cgi?id=183925 .
  */
+// Copied from org.eclipse.jdt.internal.ui.text.correction.proposals.LinkedNamesAssistProposal.DeleteBlockingExitPolicy
 public class DeleteBlockingExitPolicy implements IExitPolicy {
 	private final IDocument fDocument;
 
