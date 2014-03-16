@@ -4,6 +4,7 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.FindReplaceDocumentAdapter;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.link.LinkedModeModel;
@@ -19,9 +20,10 @@ import org.eclipse.ui.texteditor.link.EditorLinkedModeUI;
 import com.asparck.eclipse.multicursor.copied.DeleteBlockingExitPolicy;
 import com.asparck.eclipse.multicursor.hacks.ISourceViewerFinder;
 import com.asparck.eclipse.multicursor.util.CoordinatesUtil;
+import com.asparck.eclipse.multicursor.util.TextUtil;
 
 /** When triggered, any lines which are identical to the current line will start being edited. */
-public class EditIdenticalLinesHandler extends AbstractHandler {
+public class EditIdenticalHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -44,20 +46,32 @@ public class EditIdenticalLinesHandler extends AbstractHandler {
 
 		IDocument document = viewer.getDocument();
 		try {
-			IRegion selectedLine = document.getLineInformationOfOffset(selStart);
-			String selectedLinetext = document.get(selectedLine.getOffset(), selectedLine.getLength());
+			String selectedText;
+			if (selOffsetAndLen.y == 0) { // no characters selected
+				String documentText = document.get();
+				Point wordOffsetAndLen = TextUtil.findWordSurrounding(documentText, selStart);
+				if (wordOffsetAndLen != null) {
+					selectedText = document.get(wordOffsetAndLen.x, wordOffsetAndLen.y);
+				} else {
+					IRegion selectedLine = document.getLineInformationOfOffset(selStart);
+					selectedText = document.get(selectedLine.getOffset(), selectedLine.getLength());
+				}
+			} else {
+				selectedText = document.get(selOffsetAndLen.x, selOffsetAndLen.y);
+			}
 
 			LinkedPositionGroup linkedPositionGroup = new LinkedPositionGroup();
-			int numberOfLines = document.getNumberOfLines();
-			int editPositionCount = 0;
-			for (int lineNum = 0; lineNum < numberOfLines; lineNum++) {
-				IRegion currLine = document.getLineInformation(lineNum);
-				String currLineText = document.get(currLine.getOffset(), currLine.getLength());
-				if (selectedLinetext.equals(currLineText)) {
-					linkedPositionGroup.addPosition(new LinkedPosition(document, currLine.getOffset(), currLine
-							.getLength(), editPositionCount));
-					editPositionCount++;
-				}
+			int linkedPositionCount = 0;
+
+			FindReplaceDocumentAdapter findReplaceAdaptor = new FindReplaceDocumentAdapter(document);
+			IRegion matchingRegion = findReplaceAdaptor.find(0, selectedText, true, true, false, false);
+			while (matchingRegion != null) {
+				linkedPositionGroup.addPosition(new LinkedPosition(document, matchingRegion.getOffset(), matchingRegion
+						.getLength(), linkedPositionCount));
+				linkedPositionCount++;
+
+				matchingRegion = findReplaceAdaptor.find(matchingRegion.getOffset() + matchingRegion.getLength(),
+						selectedText, true, true, false, false);
 			}
 
 			LinkedModeModel model = new LinkedModeModel();
