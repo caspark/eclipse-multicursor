@@ -61,14 +61,12 @@ public class EditIdenticalHandler extends AbstractHandler {
 			}
 
 			LinkedPositionGroup linkedPositionGroup = new LinkedPositionGroup();
-			int linkedPositionCount = 0;
 
 			FindReplaceDocumentAdapter findReplaceAdaptor = new FindReplaceDocumentAdapter(document);
 			IRegion matchingRegion = findReplaceAdaptor.find(0, selectedText, true, true, false, false);
 			while (matchingRegion != null) {
 				linkedPositionGroup.addPosition(new LinkedPosition(document, matchingRegion.getOffset(), matchingRegion
-						.getLength(), linkedPositionCount));
-				linkedPositionCount++;
+						.getLength()));
 
 				matchingRegion = findReplaceAdaptor.find(matchingRegion.getOffset() + matchingRegion.getLength(),
 						selectedText, true, true, false, false);
