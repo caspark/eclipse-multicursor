@@ -7,31 +7,31 @@
                 id="com.asparck.multicursor.commands.category">
         </category>
         <command categoryId="com.asparck.multicursor.commands.category"
-                id="com.asparck.multicursor.commands.editIdentical"
-                name="Edit Identical Lines">
+                id="com.asparck.multicursor.commands.selectAllOccurrences"
+                name="Select All Occurrences">
         </command>
         <command categoryId="com.asparck.multicursor.commands.category"
-                id="com.asparck.multicursor.commands.selectNext"
+                id="com.asparck.multicursor.commands.selectNextOccurrence"
                 name="Select Next Occurrence">
         </command>
     </extension>
 
     <extension point="org.eclipse.ui.handlers">
-        <handler commandId="com.asparck.multicursor.commands.editIdentical"
+        <handler commandId="com.asparck.multicursor.commands.selectAllOccurrences"
                 class="com.asparck.eclipse.multicursor.handlers.EditIdenticalHandler">
         </handler>
-        <handler commandId="com.asparck.multicursor.commands.selectNext"
+        <handler commandId="com.asparck.multicursor.commands.selectNextOccurrence"
                 class="com.asparck.eclipse.multicursor.handlers.SelectNextHandler">
         </handler>
     </extension>
 
     <extension point="org.eclipse.ui.bindings">
-        <key commandId="com.asparck.multicursor.commands.editIdentical"
+        <key commandId="com.asparck.multicursor.commands.selectAllOccurrences"
                 contextId="org.eclipse.ui.contexts.window"
                 sequence="M1+M2+I"
                 schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
         </key>
-        <key commandId="com.asparck.multicursor.commands.selectNext"
+        <key commandId="com.asparck.multicursor.commands.selectNextOccurrence"
                 contextId="org.eclipse.ui.contexts.window"
                 sequence="M1+M2+D"
                 schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
