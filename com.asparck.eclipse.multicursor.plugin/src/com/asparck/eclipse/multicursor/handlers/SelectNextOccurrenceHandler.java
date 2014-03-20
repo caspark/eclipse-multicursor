@@ -28,7 +28,7 @@ import com.asparck.eclipse.multicursor.hacks.ISourceViewerFinder;
 import com.asparck.eclipse.multicursor.util.CoordinatesUtil;
 import com.asparck.eclipse.multicursor.util.TextUtil;
 
-public class SelectNextHandler extends AbstractHandlerWithState {
+public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 	private static final String ID_SELECTS_IN_PROGRESS = "SELECTS_IN_PROGRESS";
 
 	private static final class SelectInProgress {

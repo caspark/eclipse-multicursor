@@ -23,7 +23,7 @@ import com.asparck.eclipse.multicursor.util.CoordinatesUtil;
 import com.asparck.eclipse.multicursor.util.TextUtil;
 
 /** When triggered, any lines which are identical to the current line will start being edited. */
-public class EditIdenticalHandler extends AbstractHandler {
+public class SelectAllOccurrencesHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
