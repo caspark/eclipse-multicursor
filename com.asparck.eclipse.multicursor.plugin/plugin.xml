@@ -12,7 +12,7 @@
         </command>
         <command categoryId="com.asparck.multicursor.commands.category"
                 id="com.asparck.multicursor.commands.selectNext"
-                name="Edit Identical Lines">
+                name="Select Next Occurrence">
         </command>
     </extension>
 
