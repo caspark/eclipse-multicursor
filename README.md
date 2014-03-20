@@ -7,21 +7,14 @@ A work-in-progress attempt to provide Sublime-Text-like multi cursor support for
 What works?
 -----------
 
-Not much - don't get too excited ;)
+* `Ctrl+Shift+D`: "Select Next Occurrence" of the selected text & start editing it. Repeat to select remaining occurrences.
+* `Ctrl+Shift+I`: "Select All Occurrences" of the selected text & start editing all of them at once.
 
-* `Ctrl+Shift+i`: Rename all instances of the word under the cursor (or the selected text if text is selected, or identical lines if the cursor is in a block of whitespace). Effectively incremental & global find and replace.
+(If you haven't got anything selected, it'll expand your selection to the word under the cursor, or to the whole line if the cursor is in whitespace.)
 
-Implemented using Eclipse linked mode editing (similar to existing "rename in file" functionality), so you can't go outside the initial edit area yet.
+This is currently implemented using Eclipse linked mode editing (similar to existing "rename in file" functionality), so you can't go outside the initial edit area yet.
 
-
-Still to come
--------------
-
-* "select next" and associated editing using Eclipse linked mode, to only edit some instances of text
-
-* editing of non-identical text / editing without using linked mode
-
-* split selection to lines
+*Still to come*: Check the [open issues](https://github.com/caspark/eclipse-multicursor/issues?state=open).
 
 Building
 --------
