@@ -3,6 +3,7 @@ What is this?
 
 A work-in-progress attempt to provide Sublime-Text-like multi cursor support for text editors in the Eclipse IDE.
 
+[![Build Status](https://travis-ci.org/caspark/eclipse-multicursor.svg?branch=master)](https://travis-ci.org/caspark/eclipse-multicursor)
 
 What works?
 -----------
