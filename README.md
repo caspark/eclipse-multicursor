@@ -21,7 +21,6 @@ Building
 
 Uses [Tycho](https://eclipse.org/tycho/) for building via Maven 3:
 
-    cd com.asparck.eclipse.multicursor.parent
     mvn verify
 
 This:

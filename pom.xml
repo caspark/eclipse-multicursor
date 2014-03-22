@@ -9,11 +9,11 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>../com.asparck.eclipse.multicursor.target</module>
-    <module>../com.asparck.eclipse.multicursor.plugin</module>
-    <module>../com.asparck.eclipse.multicursor.feature</module>
-    <module>../com.asparck.eclipse.multicursor.p2updatesite</module>
-    <module>../com.asparck.eclipse.multicursor.tests</module>
+    <module>com.asparck.eclipse.multicursor.target</module>
+    <module>com.asparck.eclipse.multicursor.plugin</module>
+    <module>com.asparck.eclipse.multicursor.feature</module>
+    <module>com.asparck.eclipse.multicursor.p2updatesite</module>
+    <module>com.asparck.eclipse.multicursor.tests</module>
   </modules>
 
   <properties>
