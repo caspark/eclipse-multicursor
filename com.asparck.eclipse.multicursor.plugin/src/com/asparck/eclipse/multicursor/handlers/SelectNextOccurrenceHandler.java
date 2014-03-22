@@ -35,8 +35,10 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 		public final String searchText;
 		public final List<IRegion> existingSelections;
 		public final int nextOffset;
+		private final Point startingSelection;
 
-		public SelectInProgress(String selectedText, List<IRegion> existingSelections, int nextOffset) {
+		public SelectInProgress(Point startingSelection, String selectedText, List<IRegion> existingSelections, int nextOffset) {
+			this.startingSelection = startingSelection;
 			this.searchText = selectedText;
 			this.existingSelections = Collections.unmodifiableList(new ArrayList<IRegion>(existingSelections));
 			this.nextOffset = nextOffset;
@@ -44,7 +46,7 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 
 		@Override
 		public String toString() {
-			return "[Find " + searchText + " at " + nextOffset + "]";
+			return "[Find " + searchText + " at " + nextOffset + "; original=" + startingSelection + "]";
 		}
 	}
 
@@ -69,13 +71,13 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 			final int candidateSearchOffset;
 			final int selStart = CoordinatesUtil.fromOffsetAndLengthToStartAndEnd(selOffsetAndLen).x;
 			if (selOffsetAndLen.y == 0) { // no characters selected
-				String documentText = document.get();
-				Point wordOffsetAndLen = TextUtil.findWordSurrounding(documentText, selStart);
+				final String documentText = document.get();
+				final Point wordOffsetAndLen = TextUtil.findWordSurrounding(documentText, selStart);
 				if (wordOffsetAndLen != null) {
 					searchText = document.get(wordOffsetAndLen.x, wordOffsetAndLen.y);
 					candidateSearchOffset = wordOffsetAndLen.x;
 				} else {
-					IRegion selectedLine = document.getLineInformationOfOffset(selStart);
+					final IRegion selectedLine = document.getLineInformationOfOffset(selStart);
 					searchText = document.get(selectedLine.getOffset(), selectedLine.getLength());
 					candidateSearchOffset = selectedLine.getOffset();
 				}
@@ -86,24 +88,28 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 
 			final int searchOffset;
 			final List<IRegion> selections;
+			final Point startingSelection;
 
 			final SelectInProgress currentState = getCurrentState();
-			//FIXME need more robust detection of whether this is still the same search
-			// (should probably track the viewer, and the initial search offset, then compare those)
-			if (currentState != null && searchText.equals(currentState.searchText)) {
+			if (LinkedModeModel.getModel(document, 0) != null &&
+					currentState != null
+					&& selOffsetAndLen.equals(currentState.startingSelection)
+					&& searchText.equals(currentState.searchText)) {
+				startingSelection = currentState.startingSelection;
 				selections = new ArrayList<IRegion>(currentState.existingSelections);
 				searchOffset = currentState.nextOffset;
 			} else {
+				startingSelection = selOffsetAndLen;
 				selections = new ArrayList<IRegion>();
 				searchOffset = candidateSearchOffset;
 			}
 
-			IRegion matchingRegion = new FindReplaceDocumentAdapter(document).find(searchOffset, searchText, true,
-					true, false, false);
+			final IRegion matchingRegion = new FindReplaceDocumentAdapter(document).find(searchOffset,
+					searchText, true, true, false, false);
 			if (matchingRegion != null) {
 				selections.add(matchingRegion);
-				saveCurrentState(new SelectInProgress(searchText, selections, matchingRegion.getOffset()
-						+ matchingRegion.getLength()));
+				saveCurrentState(new SelectInProgress(startingSelection, searchText, selections,
+						matchingRegion.getOffset() + matchingRegion.getLength()));
 
 				startLinkedEdit(selections, viewer, selOffsetAndLen);
 			}
