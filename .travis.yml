@@ -1,0 +1,6 @@
+language: java
+jdk:
+ - oraclejdk7
+# set the install script to 'true' succeed in installing without doing anything
+install: true
+script: mvn verify
