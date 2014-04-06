@@ -2,7 +2,7 @@
 <feature
       id="com.asparck.eclipse.multicursor.feature"
       label="Multicursor Editing"
-      version="1.0.0.qualifier"
+      version="0.1.0.qualifier"
       provider-name="Caspar Krieger">
 
    <description url="http://www.example.com/description">
