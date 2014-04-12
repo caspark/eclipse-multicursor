@@ -14,6 +14,10 @@
                 id="com.asparck.multicursor.commands.selectNextOccurrence"
                 name="Select Next Occurrence">
         </command>
+        <command categoryId="com.asparck.multicursor.commands.category"
+                id="com.asparck.multicursor.commands.splitToLines"
+                name="Split Cursor To Lines">
+        </command>
     </extension>
 
     <extension point="org.eclipse.ui.handlers">
@@ -22,6 +26,9 @@
         </handler>
         <handler commandId="com.asparck.multicursor.commands.selectNextOccurrence"
                 class="com.asparck.eclipse.multicursor.handlers.SelectNextOccurrenceHandler">
+        </handler>
+        <handler commandId="com.asparck.multicursor.commands.splitToLines"
+                class="com.asparck.eclipse.multicursor.handlers.SplitCursorAlongLinesHandler">
         </handler>
     </extension>
 
@@ -34,6 +41,11 @@
         <key commandId="com.asparck.multicursor.commands.selectNextOccurrence"
                 contextId="org.eclipse.ui.contexts.window"
                 sequence="M1+M2+D"
+                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+        </key>
+        <key commandId="com.asparck.multicursor.commands.splitToLines"
+                contextId="org.eclipse.ui.contexts.window"
+                sequence="M1+M2+L"
                 schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
         </key>
    </extension>

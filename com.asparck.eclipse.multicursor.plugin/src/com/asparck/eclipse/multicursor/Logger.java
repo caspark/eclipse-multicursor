@@ -9,8 +9,6 @@ public class Logger {
 		return new Logger(clazz.getCanonicalName());
 	}
 
-	private final ILog pluginLog = MultiCursorPlugin.getDefault().getLog();
-
 	private final String name;
 
 	public Logger(String name) {
@@ -38,6 +36,7 @@ public class Logger {
 	}
 
 	private void logToEclipseLog(int iStatusLogLevel, String message, Throwable error) {
-		pluginLog.log(new Status(iStatusLogLevel, MultiCursorPlugin.PLUGIN_ID, formatMessage(message), error));
+		final ILog log = MultiCursorPlugin.getDefault().getLog();
+		log.log(new Status(iStatusLogLevel, MultiCursorPlugin.PLUGIN_ID, formatMessage(message), error));
 	}
 }
