@@ -118,6 +118,8 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 		}
 	}
 
+
+	// Reference: RenameLinkedMode class shows how linked mode is meant to be used
 	private void startLinkedEdit(List<IRegion> selections, ITextViewer viewer, Point originalSelection)
 			throws BadLocationException {
 		final LinkedPositionGroup linkedPositionGroup = new LinkedPositionGroup();
@@ -129,6 +131,8 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 		LinkedModeModel model = new LinkedModeModel();
 		model.addGroup(linkedPositionGroup);
 		model.forceInstall();
+		//FIXME can add a listener here to listen for the end of linked mode
+		//model.addLinkingListener(null);
 
 		LinkedModeUI ui = new EditorLinkedModeUI(model, viewer);
 		ui.setExitPolicy(new DeleteBlockingExitPolicy(viewer.getDocument()));
