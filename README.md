@@ -17,8 +17,13 @@ This is currently implemented using Eclipse linked mode editing (similar to exis
 
 *Still to come*: Check the [open issues](https://github.com/caspark/eclipse-multicursor/issues?state=open).
 
-Building
---------
+Getting it
+----------
+
+Get the latest release from the [releases page](https://github.com/caspark/eclipse-multicursor/releases) and follow the install instructions there.
+
+Building from source
+--------------------
 
 Uses [Tycho](https://eclipse.org/tycho/) for building via Maven 3:
 
@@ -30,12 +35,10 @@ This:
 * builds the plugin, feature, and update site in the target directories of `c.a.e.m.plugin`, `c.a.e.m.feature`, and `c.a.e.m.p2updatesite`
 * runs the tests in `c.a.e.m.tests`
 
-Installing
-----------
+Installing after building
+-------------------------
 
-If I were you I wouldn't bother yet (star the repo and come back later!).
-
-If you insist: after building, point your Eclipse at the update site in `c.a.e.m.p2updatesite\target`
+After building, point your Eclipse at the update site in `c.a.e.m.p2updatesite\target` and install the feature contained therein.
 
 Developing
 ----------
