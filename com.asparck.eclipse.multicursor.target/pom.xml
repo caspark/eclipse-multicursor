@@ -6,7 +6,7 @@
   <parent>
     <groupId>com.asparck.eclipse.multicursor</groupId>
     <artifactId>parent</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.1.0</version>
   </parent>
 
   <artifactId>com.asparck.eclipse.multicursor.target</artifactId> <!-- must match name of .target file -->
