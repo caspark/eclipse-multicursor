@@ -1,0 +1,59 @@
+Release Process
+===============
+
+You do not need to follow these steps if you only want to build a version for personal use (see the README).
+
+Please do not release this project if you are not the current maintainer.
+
+# Update the version in the pom files to the release version (e.g. 0.1.0):
+com.asparck.eclipse.multicursor.feature/pom.xml
+com.asparck.eclipse.multicursor.p2updatesite/pom.xml
+com.asparck.eclipse.multicursor.plugin/pom.xml
+com.asparck.eclipse.multicursor.target/pom.xml
+com.asparck.eclipse.multicursor.tests/pom.xml
+pom.xml
+
+# Update the OSGi manifest versions to the release version (e.g. 0.1.0):
+com.asparck.eclipse.multicursor.plugin/META-INF/MANIFEST.MF
+com.asparck.eclipse.multicursor.tests/META-INF/MANIFEST.MF
+
+# Update the feature version and the plugin version in the P2 feature definition to the release version (e.g. 0.1.0):
+com.asparck.eclipse.multicursor.feature/feature.xml
+
+# Update the feature version and filename in the P2 update site category definition to the release version and release filename (e.g. 0.1.0 and features/com.asparck.eclipse.multicursor.feature_0.1.0.jar)
+com.asparck.eclipse.multicursor.p2updatesite/category.xml
+
+# Build the release:
+mvn clean verify
+
+# Commit and tag the release:
+git commit -a -m "Release: prepare for v$RELEASE_VERSION release"
+git tag v$RELEASE_VERSION
+
+# Update the version in the pom files to the new Maven development version (e.g. 0.1.1-SNAPSHOT):
+com.asparck.eclipse.multicursor.feature/pom.xml
+com.asparck.eclipse.multicursor.p2updatesite/pom.xml
+com.asparck.eclipse.multicursor.plugin/pom.xml
+com.asparck.eclipse.multicursor.target/pom.xml
+com.asparck.eclipse.multicursor.tests/pom.xml
+pom.xml
+
+# Update the OSGi manifest versions to the new OSGi development version (e.g. 0.1.1.qualifier):
+com.asparck.eclipse.multicursor.plugin/META-INF/MANIFEST.MF
+com.asparck.eclipse.multicursor.tests/META-INF/MANIFEST.MF
+
+# Update the feature version and the plugin version in the P2 feature definition to the new OSGi development version (e.g. 0.1.1.qualifier):
+com.asparck.eclipse.multicursor.feature/feature.xml
+
+# Update the feature version and filename in the P2 update site category definition to the new OSGI development version and development filename (e.g. 0.1.1.qualifier and features/com.asparck.eclipse.multicursor.feature_0.1.1.qualifier.jar)
+com.asparck.eclipse.multicursor.p2updatesite/category.xml
+
+# Verify the development version works:
+mvn clean verify
+
+# Commit and push changes:
+git commit -a -m "Release: prepare for next development cycle"
+git push
+
+# Publish a release on github and upload the P2 update site + plugin jar as binaries.
+https://github.com/caspark/eclipse-multicursor/releases/new
