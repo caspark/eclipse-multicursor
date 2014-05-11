@@ -122,5 +122,5 @@ verify_only_expected_files_are_dirty
 git_commit_all_with_msg "${NEXT_DEVELOPMENT_GIT_COMMIT_MSG}"
 
 echo "*** Release completed; next steps:"
-echo "- Check the git commit history and then push"
+echo "- Check the git commit history and then 'git push --tags'"
 echo "- Upload artifacts from ${RELEASE_ARTIFACT_DIR} to a new github release: https://github.com/caspark/eclipse-multicursor/releases/new"
