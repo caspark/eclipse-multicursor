@@ -17,10 +17,20 @@ This is currently implemented using Eclipse linked mode editing (similar to exis
 
 *Still to come*: Check the [open issues](https://github.com/caspark/eclipse-multicursor/issues?state=open).
 
-Getting it
-----------
+Getting and installing it
+-------------------------
 
-Get the latest release from the [releases page](https://github.com/caspark/eclipse-multicursor/releases) and follow the install instructions there.
+Get the latest release from the [releases page] and follow the install instructions below.
+
+You have 2 options for installing (pick one):
+
+*Option 1:* [Download](https://github.com/caspark/eclipse-multicursor/releases) the P2 update site (i.e. `com.asparck.eclipse.multicursor.p2updatesite-X.Y.Z.zip`), then in Eclipse choose Help >> Install New Software >> Add >> Archive >> choose the downloaded P2 update site >> tick the box to select Eclipse Multicursor >> go through the rest of the wizard >> ignore any warnings about unsigned content (just click OK) >> restart Eclipse when prompted. You can uninstall it later by going to Help >> About Eclipse >> Installation Details >> select "Eclipse Multicursor" >> Uninstall >> restart Eclipse when prompted.
+
+*Option 2:* [Download](https://github.com/caspark/eclipse-multicursor/releases) `com.asparck.eclipse.multicursor.plugin_X.Y.Z.jar` and put it in `eclipse/plugins/dropins`, then restart Eclipse. You can uninstall it by shutting down Eclipse and deleting the jar from the dropins directory.
+
+The former is the official recommended way of installing plugins & the latter is the quick and dirty way.
+
+After installing, look at the *what works?* section above to use it.
 
 Building from source
 --------------------
