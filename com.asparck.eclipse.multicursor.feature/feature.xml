@@ -2,7 +2,7 @@
 <feature
       id="com.asparck.eclipse.multicursor.feature"
       label="Multicursor Editing"
-      version="0.1.1"
+      version="0.1.2.qualifier"
       provider-name="Caspar Krieger">
 
    <description url="https://github.com/caspark/eclipse-multicursor">
@@ -90,7 +90,7 @@
          id="com.asparck.eclipse.multicursor.plugin"
          download-size="0"
          install-size="0"
-         version="0.1.1"
+         version="0.1.2.qualifier"
          unpack="false"/>
 
 </feature>
