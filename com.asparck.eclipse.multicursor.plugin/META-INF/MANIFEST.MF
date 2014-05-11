@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Eclispe Multiple Cursor Support
+Bundle-Name: Eclipse Multiple Cursor Support
 Bundle-SymbolicName: com.asparck.eclipse.multicursor.plugin;singleton:=true
 Bundle-Version: 0.1.1.qualifier
 Bundle-Activator: com.asparck.eclipse.multicursor.MultiCursorPlugin
