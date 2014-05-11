@@ -5,6 +5,16 @@ You do not need to follow these steps if you only want to build a version for pe
 
 Please do not release this project if you are not the current maintainer.
 
+Scripted
+--------
+
+Use the release script and specify: the release version, the next development version, and the directory to copy the built artifacts to. For example, to release v0.1.1 and have the next version being developed be 0.1.2(-SNAPSHOT):
+
+mkdir -p ~/tmp/release && ./release.sh 0.1.1 0.1.2 ~/tmp/release && ls ~/tmp/release
+
+Manually
+--------
+
 # Update the version in the pom files to the release version (e.g. 0.1.0):
 com.asparck.eclipse.multicursor.feature/pom.xml
 com.asparck.eclipse.multicursor.p2updatesite/pom.xml
