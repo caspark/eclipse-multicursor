@@ -108,10 +108,23 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 					searchText, true, true, false, false);
 			if (matchingRegion != null) {
 				selections.add(matchingRegion);
-				saveCurrentState(new SelectInProgress(startingSelection, searchText, selections,
-						matchingRegion.getOffset() + matchingRegion.getLength()));
 
-				startLinkedEdit(selections, viewer, selOffsetAndLen);
+				if (selections.size() == 1) {
+					// select the next occurrence too; only selecting the current cursor pos isn't useful
+					final IRegion secondMatchingRegion = new FindReplaceDocumentAdapter(document).find(
+							matchingRegion.getOffset() + matchingRegion.getLength(), searchText, true, true, false, false);
+					if (secondMatchingRegion != null) {
+						selections.add(secondMatchingRegion);
+					}
+				}
+
+				if (selections.size() > 1) {
+					final IRegion lastSelection = selections.get(selections.size() - 1);
+					saveCurrentState(new SelectInProgress(startingSelection, searchText, selections,
+							lastSelection.getOffset() + lastSelection.getLength()));
+
+					startLinkedEdit(selections, viewer, selOffsetAndLen);
+				}
 			}
 		} catch (BadLocationException e) {
 			throw new ExecutionException("Editing failed", e);
