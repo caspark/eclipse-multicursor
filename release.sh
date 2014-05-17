@@ -34,7 +34,7 @@ function set_osgi_version {
 	# using /g to make update both occurrences as per message above
 	sed -i "s/version=\"${OLD_OSGI_VERSION}\"/version=\"${NEW_OSGI_VERSION}\"/g" com.asparck.eclipse.multicursor.feature/feature.xml || fail_with_msg "Error; aborting"
 
-	echo "Updating Eclipse feature version and filename in the P2 update site category definition to the release version and release filename"
+	echo "Updating Eclipse feature version and filename in the P2 update site category definition from ${OLD_OSGI_VERSION} to ${NEW_OSGI_VERSION}"
 	sed -i "s/com.asparck.eclipse.multicursor.feature_${OLD_OSGI_VERSION}.jar/com.asparck.eclipse.multicursor.feature_${NEW_OSGI_VERSION}.jar/" com.asparck.eclipse.multicursor.p2updatesite/category.xml || fail_with_msg "Error; aborting"
 	sed -i "s/version=\"${OLD_OSGI_VERSION}\">/version=\"${NEW_OSGI_VERSION}\">/" com.asparck.eclipse.multicursor.p2updatesite/category.xml || fail_with_msg "Error; aborting"
 }
