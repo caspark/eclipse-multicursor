@@ -6,7 +6,7 @@ Bundle-Version: 0.1.2.qualifier
 Bundle-Activator: com.asparck.eclipse.multicursor.tests.Activator
 Bundle-Vendor: Caspar Krieger
 Require-Bundle: org.eclipse.core.runtime,
- org.junit;bundle-version="4.11.0",
+ org.junit;bundle-version="4.10.0",
  com.asparck.eclipse.multicursor.plugin,
  org.eclipse.swt
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
