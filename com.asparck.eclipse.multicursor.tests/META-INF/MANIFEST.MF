@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Tests
 Bundle-SymbolicName: com.asparck.eclipse.multicursor.tests
-Bundle-Version: 0.1.3
+Bundle-Version: 0.1.4.qualifier
 Bundle-Activator: com.asparck.eclipse.multicursor.tests.Activator
 Bundle-Vendor: Caspar Krieger
 Require-Bundle: org.eclipse.core.runtime,
