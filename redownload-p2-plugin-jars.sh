@@ -11,13 +11,14 @@
 
 set -e
 
-UPDATE_SITE_BASE_URL=http://download.eclipse.org/eclipse/updates/3.8/R-3.8.2-201301310800/plugins/
+#UPDATE_SITE_BASE_URL=http://download.eclipse.org/eclipse/updates/3.8/R-3.8.2-201301310800/plugins/
+UPDATE_SITE_BASE_URL=http://download.eclipse.org/eclipse/updates/3.7/R-3.7.2-201202080800/plugins/
 
 for f in *.jar; do
 #    echo "Processing ${f}"
     if ! unzip -t ${f} 2>&1 > /dev/null ; then
         echo "*** ${f} appears corrupt, redownloading"
-        wget "${BASE_URL}${f}.pack.gz"
+        wget "${UPDATE_SITE_BASE_URL}${f}.pack.gz"
         unpack200 -r "${f}.pack.gz" "${f}"
     fi
 done
