@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.text.BadLocationException;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
 import org.eclipse.jface.text.ITextViewerExtension2;
 import org.eclipse.jface.text.ITextViewerExtension4;
@@ -20,6 +21,7 @@ import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.events.VerifyListener;
 import org.eclipse.swt.graphics.Color;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.texteditor.DefaultMarkerAnnotationAccess;
@@ -46,14 +48,14 @@ public class MultiCursorController {
 		final List<IRegion> selectionRegions = new ArrayList<IRegion>();
 
 		//FIXME get the initial selected regions from the selection
-//		final Point selOffsetAndLen = viewer.getSelectedRange();
-//		final IDocument document = viewer.getDocument();
-//		final int firstLineNum = document.getLineOfOffset(selOffsetAndLen.x);
-//		final int lastLineNum = document.getLineOfOffset(selOffsetAndLen.x + selOffsetAndLen.y);
-//		for (int line = firstLineNum; line <= lastLineNum; line++) {
-//			selectionRegions.add(new Region(document.getLineOffset(line), document.getLineLength(line)));
-//		}
-		selectionRegions.add(new Region(5, 1)); //TODO remove once we have a proper set of selections
+		final Point selOffsetAndLen = viewer.getSelectedRange();
+		final IDocument document = viewer.getDocument();
+		final int firstLineNum = document.getLineOfOffset(selOffsetAndLen.x);
+		final int lastLineNum = document.getLineOfOffset(selOffsetAndLen.x + selOffsetAndLen.y);
+		for (int line = firstLineNum; line <= lastLineNum; line++) {
+			selectionRegions.add(new Region(document.getLineOffset(line), document.getLineLength(line)));
+		}
+//		selectionRegions.add(new Region(5, 1)); //TODO remove once we have a proper set of selections
 
 		startMultiCursorEdit(new CursorSelections(viewer, selectionRegions));
 	}
@@ -84,8 +86,6 @@ public class MultiCursorController {
 
 	/**
 	 * Creates and configures an annotation painter for the given viewer and annotation model.
-	 * @param viewer
-	 * @param annotationModel
 	 */
 	private void setUpAnnotationPainting(ISourceViewer viewer, MultiCursorAnnotationModel annotationModel) {
 		// Some points on drawing the cursors using annotations:
@@ -96,7 +96,6 @@ public class MultiCursorController {
 
 		//configure the annotation painter
 		final AnnotationPainter annotationPainter = new AnnotationPainter(viewer, new DefaultMarkerAnnotationAccess());
-		annotationPainter.addAnnotationType(MultiCursorAnnotationModel.ANNOTATION_TYPE, annotationPainter);
 		annotationPainter.setAnnotationTypeColor(MultiCursorAnnotationModel.ANNOTATION_TYPE, annotationColor);
 		annotationPainter.addAnnotationType(MultiCursorAnnotationModel.ANNOTATION_TYPE, MultiCursorController.ANNOTATION_DRAWING_STRATEGY);
 
