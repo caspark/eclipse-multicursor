@@ -8,7 +8,7 @@ An attempt to provide (fairly limited) Sublime-Text-like multi cursor support fo
 What works?
 -----------
 
-* `Ctrl+Shift+D`: "Select Next Occurrence" of the selected text & start editing it. Repeat to select remaining occurrences.
+* `Ctrl+Alt+D`: "Select Next Occurrence" of the selected text & start editing it. Repeat to select remaining occurrences.
 * `Ctrl+Shift+I`: "Select All Occurrences" of the selected text & start editing all of them at once.
 
 (If you haven't got anything selected, it'll expand your selection to the word under the cursor, or to the whole line if the cursor is in whitespace.)

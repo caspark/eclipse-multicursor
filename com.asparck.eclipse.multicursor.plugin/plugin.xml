@@ -33,7 +33,7 @@
         </key>
         <key commandId="com.asparck.multicursor.commands.selectNextOccurrence"
                 contextId="org.eclipse.ui.contexts.window"
-                sequence="M1+M2+D"
+                sequence="M1+M3+D"
                 schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
         </key>
    </extension>
