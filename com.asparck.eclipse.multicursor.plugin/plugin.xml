@@ -28,12 +28,38 @@
     <extension point="org.eclipse.ui.bindings">
         <key commandId="com.asparck.multicursor.commands.selectAllOccurrences"
                 contextId="org.eclipse.ui.textEditorScope"
-                sequence="M1+M2+I"
+                sequence="ALT+F3"
+                platform="win32"
+                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+        </key>
+        <key commandId="com.asparck.multicursor.commands.selectAllOccurrences"
+                contextId="org.eclipse.ui.textEditorScope"
+                sequence="ALT+F3"
+                platform="gtk"
+                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+        </key>
+        <key commandId="com.asparck.multicursor.commands.selectAllOccurrences"
+                contextId="org.eclipse.ui.textEditorScope"
+                sequence="CTRL+COMMAND+G"
+                platform="cocoa"
                 schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
         </key>
         <key commandId="com.asparck.multicursor.commands.selectNextOccurrence"
                 contextId="org.eclipse.ui.textEditorScope"
-                sequence="M1+M2+D"
+                sequence="ALT+J"
+                platform="win32"
+                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+        </key>
+        <key commandId="com.asparck.multicursor.commands.selectNextOccurrence"
+                contextId="org.eclipse.ui.textEditorScope"
+                sequence="ALT+J"
+                platform="gtk"
+                schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
+        </key>
+        <key commandId="com.asparck.multicursor.commands.selectNextOccurrence"
+                contextId="org.eclipse.ui.textEditorScope"
+                sequence="CTRL+G"
+                platform="cocoa"
                 schemeId="org.eclipse.ui.defaultAcceleratorConfiguration">
         </key>
    </extension>
