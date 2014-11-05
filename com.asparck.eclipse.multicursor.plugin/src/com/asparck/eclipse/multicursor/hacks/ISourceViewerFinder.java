@@ -4,6 +4,7 @@ import java.lang.reflect.Method;
 
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.texteditor.AbstractTextEditor;
 
 import com.asparck.eclipse.multicursor.Logger;
@@ -15,11 +16,16 @@ public class ISourceViewerFinder {
 	private static final Logger logger = Logger.create(ISourceViewerFinder.class);
 
 	public static ISourceViewer fromEditorPart(IEditorPart editorPart) {
-		if (editorPart instanceof AbstractTextEditor) {
-			return fromAbstractTextEditor((AbstractTextEditor) editorPart);
+		Object activeEditor = editorPart;
+		if (editorPart instanceof MultiPageEditorPart) {
+			MultiPageEditorPart multiPageEditorPart = (MultiPageEditorPart) editorPart;
+			activeEditor = multiPageEditorPart.getSelectedPage();
+		}
+		if (activeEditor instanceof AbstractTextEditor) {
+			return fromAbstractTextEditor((AbstractTextEditor) activeEditor);
 		} else {
-			logger.info("Unable to get ISourceViewer from " + editorPart + " of type "
-					+ editorPart.getClass().getCanonicalName());
+			logger.info("Unable to get ISourceViewer from " + editorPart
+					+ " of type " + editorPart.getClass().getCanonicalName());
 			return null;
 		}
 	}
