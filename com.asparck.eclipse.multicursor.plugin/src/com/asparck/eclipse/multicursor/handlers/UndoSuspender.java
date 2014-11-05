@@ -21,7 +21,7 @@ import org.eclipse.wst.sse.core.internal.undo.IStructuredTextUndoManager;
 
 public class UndoSuspender implements ILinkedModeListener {
 
-	IOperationApprover operationApprover = new IOperationApprover() {
+	private final IOperationApprover operationApprover = new IOperationApprover() {
 
 		@Override
 		public IStatus proceedUndoing(IUndoableOperation operation,
@@ -36,6 +36,17 @@ public class UndoSuspender implements ILinkedModeListener {
 		}
 	};
 
+	private final CommandStackListener commandStackListener = new CommandStackListener() {
+
+		@Override
+		public void commandStackChanged(EventObject event) {
+			if (event.getSource() instanceof CommandStack) {
+				CommandStack aa = (CommandStack) event.getSource();
+				compoundCommand.append(aa.getMostRecentCommand());
+			}
+		}
+	};
+
 	private final IOperationHistory operationHistory;
 	private IStructuredTextUndoManager undoManager;
 	private CommandStack oldCommandStack;
@@ -45,31 +56,26 @@ public class UndoSuspender implements ILinkedModeListener {
 		this.operationHistory = OperationHistoryFactory.getOperationHistory();
 		this.operationHistory.addOperationApprover(operationApprover);
 
-		if (document instanceof IStructuredDocument) {
+		if (isStructuredDocument(document)) {
 			IStructuredDocument structuredDocument = (IStructuredDocument) document;
 			CommandStack basicCommandStack = new BasicCommandStack() {
 				@Override
 				public boolean canUndo() {
-					System.err.println("trye undo~~~~~~~");
 					return false;
 				}
 			};
-			basicCommandStack
-					.addCommandStackListener(new CommandStackListener() {
-
-						@Override
-						public void commandStackChanged(EventObject event) {
-							if (event.getSource() instanceof CommandStack) {
-								CommandStack aa = (CommandStack) event
-										.getSource();
-								compoundCommand.append(aa
-										.getMostRecentCommand());
-							}
-						}
-					});
+			basicCommandStack.addCommandStackListener(commandStackListener);
 			undoManager = structuredDocument.getUndoManager();
 			oldCommandStack = undoManager.getCommandStack();
 			undoManager.setCommandStack(basicCommandStack);
+		}
+	}
+
+	private boolean isStructuredDocument(IDocument document) {
+		try {
+			return document instanceof IStructuredDocument;
+		} catch (NoClassDefFoundError e) {
+			return false;
 		}
 	}
 

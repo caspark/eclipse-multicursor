@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<?pde version="3.8"?><target name="target" sequenceNumber="8">
+<?pde version="3.8"?><target name="target" sequenceNumber="13">
 <locations>
 <location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.platform.sdk" version="3.7.2.M20120208-0800"/>
 <unit id="org.eclipse.sdk.ide" version="3.7.2.M20120208-0800"/>
 <repository location="http://download.eclipse.org/eclipse/updates/3.7"/>
+</location>
+<location includeAllPlatforms="false" includeConfigurePhase="true" includeMode="planner" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.wst.web_ui.feature.feature.group" version="3.3.2.v201111030500-7O7IFj6EMjB7yO1Xs_G1kMtQeOye6HTXFWve95_R"/>
+<unit id="org.eclipse.emf.sdk.feature.group" version="2.7.2.v20120130-0943"/>
+<repository location="http://download.eclipse.org/releases/indigo"/>
 </location>
 </locations>
 </target>
