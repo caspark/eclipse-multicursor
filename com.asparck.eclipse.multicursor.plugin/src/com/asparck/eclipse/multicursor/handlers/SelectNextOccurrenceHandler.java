@@ -145,7 +145,7 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 		model.addGroup(linkedPositionGroup);
 		model.forceInstall();
 		//FIXME can add a listener here to listen for the end of linked mode
-		model.addLinkingListener(new UndoSuspender());
+		model.addLinkingListener(new UndoSuspender(viewer.getDocument()));
 
 		LinkedModeUI ui = new EditorLinkedModeUI(model, viewer);
 		ui.setExitPolicy(new DeleteBlockingExitPolicy(viewer.getDocument()));
@@ -173,8 +173,8 @@ public class SelectNextOccurrenceHandler extends AbstractHandlerWithState {
 
 	@Override
 	public void handleStateChange(State state, Object oldValue) {
-//		logger.debug("State changed; new value=" + state.getId() + ":" + state.getValue() + " and old value="
-//				+ oldValue);
+		//		logger.debug("State changed; new value=" + state.getId() + ":" + state.getValue() + " and old value="
+		//				+ oldValue);
 	}
 
 }
