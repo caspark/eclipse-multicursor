@@ -1,30 +1,29 @@
 What is this?
 =============
 
-An attempt to provide (fairly limited) Sublime-Text-like multi cursor support for text editors in the Eclipse IDE (3.7 and later).
-
-Currently not seeing any active development from me & could do with a more committed maintainer - see below.
+An *aborted* attempt to provide Sublime-Text-like multi cursor support for text editors in the Eclipse IDE (3.7 and later).
 
 [![Build Status](https://travis-ci.org/caspark/eclipse-multicursor.svg?branch=master)](https://travis-ci.org/caspark/eclipse-multicursor)
 
 What works?
 -----------
 
+I intended to implement full multi cursor behaviour in this plugin, but stopped using Eclipse before I got more than bits and pieces of that working. So at the moment this plugin is implemented under the covers by using Eclipse linked mode editing (similar to existing "rename in file" functionality), so **you can't move the cursors outside the initial selection areas, and all multiple-cursor-edited-text must be the same string.**
+
+Usage
+-----
+
 * `Alt+J` (OSX: `Ctrl+G`): "Select Next Occurrence" of the selected text & start editing it. Repeat to select remaining occurrences.
 * `Alt+F3` (OSX: `Ctrl+Cmd+G`): "Select All Occurrences" of the selected text & start editing all of them at once.
 
 (If you haven't got anything selected, it'll expand your selection to the word under the cursor, or to the whole line if the cursor is in whitespace.)
 
-This is implemented using Eclipse linked mode editing (similar to existing "rename in file" functionality), so *you can't go outside the initial edit area.*
-
 What's next?
 ------------
 
-Honestly, not much: I'm not using Eclipse at all these days. I'd like to hand the metaphorical torch of this project over to someone else, as I still believe it's very doable to create a real implementation (i.e. not using Eclipse linked mode) which allows editing outside the initially selected string.
+Nothing from me. I'm not using Eclipse any more and don't have much interest in continuing this project as a result.
 
-However, one thing that's more annoying than coming across a not very actively maintained project is coming across several similar successors to a not very actively maintained project. I see 2 obvious future directions from this codebase: keep support for the ancient Eclipse 3.6.x series and focus on making the linked mode editing support more solid (e.g. fixing #16), or drop support for old Eclipse versions and implement a custom multiple-cursor mode from scratch (includes probably drawing your own cursor onto the editor canvas, and eventually tackling interesting use-cases like multiple-selection copy-paste).
-
-Anyway, shoot me an email with your plans if you're interested.
+Ideally, I'd like to hand this project over to someone else, as I still believe it's very doable to create a real implementation (i.e. not using Eclipse linked mode). Open an issue if you're interested.
 
 Getting and installing it
 -------------------------
