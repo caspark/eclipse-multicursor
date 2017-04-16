@@ -75,6 +75,7 @@ public class SelectAllOccurrencesHandler extends AbstractHandler {
 			LinkedModeModel model = new LinkedModeModel();
 			model.addGroup(linkedPositionGroup);
 			model.forceInstall();
+			model.addLinkingListener(new UndoSuspender());
 
 			LinkedModeUI ui = new EditorLinkedModeUI(model, viewer);
 			ui.setExitPolicy(new DeleteBlockingExitPolicy(document));
